@@ -23,6 +23,7 @@ public:
 	bool		IsEOF();
 	uint64_t	Size();
 	_T 			GetSample();
+	uint32_t	GetPeakValue();
 	uint64_t	Trim();
 	uint64_t	SampleSize();
 	uint64_t	TimeLength();
@@ -107,6 +108,16 @@ uint64_t PCMFile<_T>::TimeLength()
 	return SampleSize()/m_nSamplingRate;
 }
 
-
+template <class _T>
+uint32_t PCMFile<_T>::GetPeakValue()
+{
+	//_T r=-1;
+	
+	if(sizeof(_T)==2)
+		return 65535;
+	else if(sizeof(_T)==1)
+		return 255;
+	return 0;
+}
 
 #endif
